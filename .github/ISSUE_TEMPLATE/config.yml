@@ -1,0 +1,6 @@
+blank_issues_enabled: true
+contact_links:
+  - name: delphi-edm4hep documentation
+    url: https://delphi-fulldst-edm4hep.github.io/delphi-edm4hep/
+    about: Read the converter documentation and guides before filing an issue.
+

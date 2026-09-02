@@ -1,0 +1,65 @@
+name: Bug report
+description: Report a reproducible problem in an organization repository
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time to provide a reproducible report.
+  - type: input
+    id: repository
+    attributes:
+      label: Repository
+      description: Which organization repository contains the problem?
+      placeholder: delphi-edm4hep
+    validations:
+      required: true
+  - type: input
+    id: revision
+    attributes:
+      label: Revision
+      description: Branch, tag or commit SHA used
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: DELPHI/Key4hep releases, operating system and other relevant versions
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Include the smallest safe command sequence that demonstrates the issue.
+      placeholder: |
+        1. Source ...
+        2. Run ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour and logs
+      description: Paste relevant output after removing secrets, private paths and restricted data.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched for an existing issue describing this problem.
+          required: true
+        - label: I removed secrets and restricted data from this report.
+          required: true
+
