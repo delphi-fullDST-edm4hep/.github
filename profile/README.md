@@ -1,9 +1,10 @@
 # Bringing DELPHI data into the EDM4hep ecosystem
 
 This organization connects the DELPHI experiment's legacy data formats to a
-modern, reproducible HEP analysis stack. Its two public repositories cover
+modern, reproducible HEP analysis stack. Its three public repositories cover
 different parts of this work. One produces fully simulated DELPHI events with
-modern generators. The other converts reconstructed DELPHI events to EDM4hep.
+modern generators. One converts reconstructed DELPHI events to EDM4hep. The
+third draws those events, in a browser.
 
 ```text
 modern event generators
@@ -20,6 +21,9 @@ modern event generators
                      │
                      ▼
                    EDM4hep
+                     │
+                     ▼
+              event display
 ```
 
 ## DELPHI simulation pipeline
@@ -63,7 +67,37 @@ and want an analysis-ready EDM4hep representation with documented collection
 meanings and units.
 
 [Read the converter documentation](https://delphi-fulldst-edm4hep.github.io/delphi-edm4hep/)
-or visit either repository for its build, production and validation guides.
+or visit the repository for its build, production and validation guides.
+
+## DELPHI event display
+
+[**delphi-edm4hep-eventdisplay**](https://github.com/delphi-fullDST-edm4hep/delphi-edm4hep-eventdisplay)
+draws a single DELPHI event straight from an EDM4hep file, with no DELGRA, no
+X11 and no ROOT. It reads the file with uproot and discovers the collections
+from podio metadata rather than assuming their names, so each part of the
+picture can be drawn from whichever `Track`, `Vertex`, `Cluster`, hit or
+`ParticleID` collection you choose.
+
+It draws four panels — the r-φ and r-z views of the whole event, the vertex
+detector with its layers and hits, and the RICH Cherenkov angle against
+momentum with the expected π/K/p curves — or a three-dimensional detector
+scene. Only measured quantities are drawn: tracks are helices from their own
+perigee parameters, started at the vertex they belong to, with the
+back-extrapolation to the interaction point dotted so the picture never claims
+a path the particle did not travel.
+
+The display runs in the browser. Drop an EDM4hep file onto the page and uproot
+reads it locally under Pyodide; nothing is uploaded and no server is involved.
+Beside the figure, every collection in the event is listed with its type,
+domain, provenance, relations and per-event object count — the same vocabulary
+as the converter's collection map — and selecting one dims everything in the
+figure drawn from anywhere else.
+
+**Use it when:** you want to look at a single converted event, see what a
+collection actually holds for that event, or produce a figure for a talk.
+
+[Open the event display](https://delphi-fulldst-edm4hep.github.io/delphi-edm4hep-eventdisplay/)
+or [read its documentation](https://delphi-fulldst-edm4hep.github.io/delphi-edm4hep-eventdisplay/manual/).
 
 ## Get involved
 
