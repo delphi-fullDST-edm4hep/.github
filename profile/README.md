@@ -1,10 +1,11 @@
 # Bringing DELPHI data into the EDM4hep ecosystem
 
 This organization connects the DELPHI experiment's legacy data formats to a
-modern, reproducible HEP analysis stack. Its three public repositories cover
+modern, reproducible HEP analysis stack. Its four public repositories cover
 different parts of this work. One produces fully simulated DELPHI events with
-modern generators. One converts reconstructed DELPHI events to EDM4hep. The
-third draws those events, in a browser.
+modern generators. One converts reconstructed DELPHI events to EDM4hep. One
+draws those events, in a browser. The fourth hosts calibrations to apply to the
+converted data in an analysis.
 
 ```text
 modern event generators
@@ -22,8 +23,9 @@ modern event generators
                      ▼
                    EDM4hep
                      │
-                     ▼
-              event display
+          ┌──────────┴──────────┐
+          ▼                     ▼
+    event display     corrections (correctionlib)
 ```
 
 ## DELPHI simulation pipeline
@@ -98,6 +100,24 @@ collection actually holds for that event, or produce a figure for a talk.
 
 [Open the event display](https://delphi-fulldst-edm4hep.github.io/delphi-edm4hep-eventdisplay/)
 or [read its documentation](https://delphi-fulldst-edm4hep.github.io/delphi-edm4hep-eventdisplay/manual/).
+
+## DELPHI corrections
+
+[**delphi-correctionlib**](https://github.com/delphi-fullDST-edm4hep/delphi-correctionlib)
+hosts corrections for the DELPHI open data in EDM4hep format, stored as
+[correctionlib](https://github.com/cms-nanoAOD/correctionlib) JSON files. They
+can be evaluated the same way from Python and C++. The first correction is the
+charged-track momentum scale for the 1994 (94C2) and 1995 (95D2) data
+processings. It was calibrated on K0S → π+π− and Z → μ+μ− in data and validated
+on J/ψ and charm-meson mass peaks. It comes with its systematic variations and
+the scripts that remake it.
+
+**Use it when:** you analyse converted DELPHI data and want calibrated
+quantities, such as track momenta, with documented systematic variations.
+
+[Browse the corrections](https://delphi-fulldst-edm4hep.github.io/delphi-correctionlib/)
+in the browser, where they are evaluated and plotted, or visit the repository
+for usage and validation details.
 
 ## Get involved
 
